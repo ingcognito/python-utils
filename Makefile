@@ -7,3 +7,6 @@ help:
 
 qrcode: ## Creates a QR code based off string
 	python ./qr-code/qr-code.py
+
+speech-to-translate: ## Takes speech from microphone
+	python ./speech-recognition/speech-recognition.py
