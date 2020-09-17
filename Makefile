@@ -10,3 +10,10 @@ qrcode: ## Creates a QR code based off string
 
 speech-to-translate: ## Takes speech from microphone
 	python ./speech-recognition/speech-recognition.py
+
+imdb: ## Runs query on IMDB datasets
+	python ./imdb/imdb-query.py
+
+download-imdb-tsv:
+	wget https://datasets.imdbws.com/title.basics.tsv.gz; \
+	gunzip title.basics.tsv.gz;
