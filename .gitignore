@@ -1,3 +1,4 @@
 qrcode.png
 title.basics.tsv*
 **/.env
+**/__pycache__

@@ -23,25 +23,20 @@ def arg_parse():
     return args
 
 
-class Utility:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+class TwitterUtility:
+    def __init__(self):
+        self.twitter = Twitter(auth=OAuth(consumer_key=CONSUMER_KEY,consumer_secret=CONSUMER_SECRET, token=ACCESS_TOKEN_KEY, token_secret=ACCESS_TOKEN_SECRET))
         
-    def hello(self):
-        name = self.name
-        age = self.age
-        print(f" Hello my name is {name}, I am {age} years old")
+    def run(self):
+        print(self.twitter.statuses.home_timeline())
 
 def main():
     # args = arg_parse()
     # name = args.name
     # age = args.age
 
-    # utility = Utility(name=name, age=age)
-    # utility.hello()
-    t = Twitter(auth=OAuth(consumer_key=CONSUMER_KEY,consumer_secret=CONSUMER_SECRET, token=ACCESS_TOKEN_KEY, token_secret=ACCESS_TOKEN_SECRET))
-    print(t.statuses.home_timeline())
+    util = TwitterUtility()
+    util.run()
 
 
 if __name__ == '__main__':
