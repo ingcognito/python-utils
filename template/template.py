@@ -1,6 +1,6 @@
 import logging
 import argparse
-import dotenv from load_dotenv
+from dotenv import load_dotenv
 logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 
 load_dotenv()
