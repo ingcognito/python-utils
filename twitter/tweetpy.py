@@ -1,7 +1,6 @@
 import logging
 import csv
 import os
-import argparse
 import json
 import sys
 import tweepy
@@ -13,16 +12,7 @@ consumer_key = os.getenv("consumer_key")
 consumer_secret = os.getenv("consumer_secret")
 access_token = os.getenv("access_token_key")
 access_token_secret = os.getenv("access_token_secret")
-
-def arg_parse():
-    parser = argparse.ArgumentParser(description='Parsin some args')
-    parser.add_argument('--name', required=True, type=str,
-                        help='name of person')
-    parser.add_argument('--age', required=True, type=str,
-                        help='age of person')
-    args = parser.parse_args()
-    return args
-
+twitter_username = ""
 
 class TwitterUtility:
     def __init__(self):
@@ -64,22 +54,30 @@ class TwitterUtility:
         outtweets = [[tweet.id_str, tweet.created_at, tweet.text] for tweet in alltweets]
 
         #write the csv
-        with open(f'{screen_name}_tweets.csv', 'w') as f:
+        with open(f'{twitter_username}_tweets.csv', 'w') as f:
             writer = csv.writer(f)
             writer.writerow(["id","created_at","text"])
             writer.writerows(outtweets)
 
         pass
-        
-    def run(self):
-        print(self.twitter.statuses.home_timeline())
 
+    def batch_delete(self):
+        api = self.api 
+        with open(f'{twitter_username}_tweets.csv', 'r') as f:
+            tweets = csv.reader(f)
+            for row in tweets:
+                print(row[0])
+                status = row[0]
+                try:
+                    api.destroy_status(status)
+                    print(f"Deleted: {status}")
+                except:
+                    print(f"Failed to delete: {status}")
+        
 def main():
-    # args = arg_parse()
-    # name = args.name
-    # age = args.age
     util = TwitterUtility()
-    util.get_all_user_tweets("ingcognito92")
+    util.get_all_user_tweets(self)
+    util.batch_delete()
 
 
 if __name__ == '__main__':
