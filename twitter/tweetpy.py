@@ -12,7 +12,7 @@ consumer_key = os.getenv("consumer_key")
 consumer_secret = os.getenv("consumer_secret")
 access_token = os.getenv("access_token_key")
 access_token_secret = os.getenv("access_token_secret")
-twitter_username = ""
+twitter_username = "username_here"
 
 class TwitterUtility:
     def __init__(self):
@@ -73,10 +73,11 @@ class TwitterUtility:
                     print(f"Deleted: {status}")
                 except:
                     print(f"Failed to delete: {status}")
+            print("Twitter Batch Deletion Completed")
         
 def main():
     util = TwitterUtility()
-    util.get_all_user_tweets(self)
+    util.get_all_user_tweets(screen_name='username_here')
     util.batch_delete()
 
 
